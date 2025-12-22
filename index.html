@@ -194,12 +194,52 @@
   </defs>
 </svg>
  <script type="module">
-    let isLogin = true;
+const modal = document.getElementById("authModal");
 
-window.switchMode = () => {
-  isLogin = !isLogin;
-  document.getElementById("authTitle").innerText =
-    isLogin ? "Вход" : "Регистрация";
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("User logged:", user.email);
+    modal.style.opacity = "0";
+    modal.style.pointerEvents = "none";
+
+    setTimeout(() => {
+      modal.style.display = "none";
+    }, 300);
+  } else {
+    modal.style.display = "flex";
+    modal.style.opacity = "1";
+    modal.style.pointerEvents = "auto";
+  }
+});
+function shakeAuth() {
+  const box = document.querySelector(".auth-box");
+  box.classList.remove("shake");
+  void box.offsetWidth;
+  box.classList.add("shake");
+}
+
+window.login = async () => {
+  try {
+    await signInWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+  } catch (e) {
+    shakeAuth();
+  }
+};
+
+window.register = async () => {
+  try {
+    await createUserWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+  } catch (e) {
+    shakeAuth();
+  }
 };
 
   </script>
