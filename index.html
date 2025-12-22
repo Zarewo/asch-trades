@@ -18,62 +18,58 @@
 <button onclick="logout()">Выйти</button>
 
 <script type="module">
-  // Импортируйте необходимые функции из соответствующих SDK.
-import { initializeApp } from "firebase/app" ;   
-import { getAnalytics } from "firebase/analytics" ;   
-// TODO: Добавьте SDK для продуктов Firebase, которые вы хотите использовать
-// https://firebase.google.com/docs/web/setup#available-libraries
+  // Firebase CDN
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { 
+    getAuth, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    signOut,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-// Конфигурация Firebase вашего веб-приложения
-// Для Firebase JS SDK версии 7.20.0 и выше measurementId является необязательным параметром.
-const firebaseConfig = { 
-  apiKey : "AIzaSyAf3N5XpXMtgB4PhPERQxfNf_UrtNzQ5aQ" , 
-  authDomain : "asch-trades.firebaseapp.com" , 
-  projectId : "asch-trades" , 
-  storageBucket : "asch-trades.firebasestorage.app" , 
-  messagingSenderId : "1021341834852" , 
-  appId : "1:1021341834852:web:58ff1ba5e12fc432c44971" , 
-  measurementId : "G-40C6GCWS75" 
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyAf3N5XpXMtgB4PhPERQxfNf_UrtNzQ5aQ",
+    authDomain: "asch-trades.firebaseapp.com",
+    projectId: "asch-trades",
+    appId: "1:1021341834852:web:58ff1ba5e12fc432c44971"
+  };
 
-// Инициализация Firebase
-const app = initializeApp ( firebaseConfig );
-const analytics = getAnalytics ( app );
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-  // регистрация
-  window.register = () => {
+  // ===== FUNCTIONS =====
+  window.register = function () {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => alert("Аккаунт создан"))
-      .catch(e => alert(e.message));
+      .catch(err => alert(err.message));
   };
 
-  // логин
-  window.login = () => {
+  window.login = function () {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
     signInWithEmailAndPassword(auth, email, password)
       .then(() => alert("Вход выполнен"))
-      .catch(e => alert(e.message));
+      .catch(err => alert(err.message));
   };
 
-  // выход
-  window.logout = () => {
-    signOut(auth);
+  window.logout = function () {
+    signOut(auth).then(() => alert("Выход выполнен"));
   };
 
-  // проверка авторизации
   onAuthStateChanged(auth, user => {
     if (user) {
-      console.log("Залогинен:", user.email);
+      console.log("Logged in:", user.email);
     } else {
-      console.log("Не залогинен");
+      console.log("Not logged in");
     }
   });
 </script>
+
 
 <!-- HEADER -->
 <header class="liquid-glass">
