@@ -763,15 +763,13 @@ select option:checked{
   opacity: 0.9;
   white-space: nowrap;
 }
-/* ===== USER PANEL — CLEAN MOBILE ===== */
+//* ===== USER PANEL — SAFE MOBILE (НЕ ПЕРЕКРЫВАЕТ МЕНЮ) ===== */
 @media (max-width: 480px) {
 
   #userPanel {
-    top: 14px;
-    right: 14px;
-    bottom: auto;
-    left: auto;
-    transform: none;
+    position: fixed;
+    top: 72px;              /* ⬅ ниже header */
+    right: 12px;
 
     padding: 8px 10px;
     gap: 8px;
@@ -779,12 +777,12 @@ select option:checked{
 
     display: flex;
     align-items: center;
+    z-index: 50;            /* ⬅ ниже хедера */
   }
 
   #userEmail {
     max-width: 120px;
     font-size: 12px;
-    line-height: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
