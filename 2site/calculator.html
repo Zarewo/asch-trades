@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Position Size Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="liquid-glass">
+  <a href="index.html" class="nav-item">Home</a>
+  <a href="calculator.html" class="nav-item active">Size Calculator</a>
+  <a href="https://www.forexfactory.com/calendar"
+     target="_blank"
+     class="nav-item">Forex Factory</a>
+</header>
+
+<section class="hero">
+  <div class="liquid-glass hero-box">
+
+    <h1>POSITION SIZE</h1>
+    <p>Risk & position sizing calculator</p>
+
+    <div style="margin-top:40px;text-align:left;">
+
+      <!-- Instrument -->
+      <label>Instrument</label>
+      <select id="instrument"
+        style="width:100%;padding:14px;border-radius:20px;">
+        <option value="XAUUSD">XAUUSD</option>
+        <option value="EURUSD">EURUSD</option>
+        <option value="GBPUSD">GBPUSD</option>
+        <option value="BTCUSD">BTCUSD</option>
+        <option value="US500">S&P 500</option>
+      </select>
+
+      <!-- Balance -->
+      <label style="margin-top:16px;">Account Balance ($)</label>
+      <input id="balance" type="number" value="100000"
+        style="width:100%;padding:14px;border-radius:20px;">
+
+      <!-- Risk type -->
+      <label style="margin-top:16px;">Risk Type</label>
+      <select id="riskType"
+        style="width:100%;padding:14px;border-radius:20px;"
+        onchange="toggleRiskType()">
+        <option value="percent">Risk %</option>
+        <option value="money">Risk $</option>
+      </select>
+
+      <!-- Risk value -->
+      <label id="riskLabel" style="margin-top:16px;">Risk (%)</label>
+      <input id="riskValue" type="number" value="2"
+        style="width:100%;padding:14px;border-radius:20px;">
+
+      <!-- Stop Loss -->
+      <label id="slLabel" style="margin-top:16px;">Stop Loss</label>
+      <input id="stopLoss" type="number" value="200"
+        style="width:100%;padding:14px;border-radius:20px;">
+
+      <!-- BUTTON (ВАЖНО) -->
+      <button class="btn"
+        style="margin-top:24px;width:100%;"
+        onclick="calculate()">
+        Calculate
+      </button>
+
+    </div>
+
+    <!-- Results -->
+    <div style="margin-top:40px;">
+      <p>Money at risk: <b>$<span id="moneyRisk">0</span></b></p>
+      <p>Units: <b><span id="units">0</span></b></p>
+      <p>Lots: <b><span id="lots">0</span></b></p>
+    </div>
+
+  </div>
+</section>
+
+
+<script src="js/instruments.js"></script>
+<script src="js/calculator.js"></script>
+
+<!-- SVG GLASS DISTORTION -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <filter id="glass-distortion">
+      <feTurbulence type="fractalNoise"
+        baseFrequency="0.006 0.006"
+        numOctaves="2"
+        seed="12"
+        result="noise"/>
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="noise"
+        scale="35"
+        xChannelSelector="R"
+        yChannelSelector="G"/>
+    </filter>
+
+    <filter id="glass-distortion-2">
+      <feTurbulence type="fractalNoise"
+        baseFrequency="0.009 0.009"
+        numOctaves="2"
+        seed="42"
+        result="noise"/>
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="noise"
+        scale="45"
+        xChannelSelector="R"
+        yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+<footer class="site-footer liquid-glass">
+  <div class="footer-links">
+    <a href="https://t.me/ascheleo" target="_blank">Telegram — @ascheleo</a>
+    <a href="https://discord.gg/zvYnenM6kh" target="_blank">Discord — asch-trades</a>
+    <a href="https://www.youtube.com/@ascheleo" target="_blank">YouTube — asch-trades</a>
+    <a href="https://www.tiktok.com/@ascheleo" target="_blank">TikTok — @ascheleo</a>
+    <a href="https://github.com/Zarewo" target="_blank">GitHub — Zarewo</a>
+  </div>
+
+  <div class="footer-brand">
+    Kystameelion • Ascheleo • Aweleo
+	<footer>
+  Trading Tools © 2025
+</footer>
+  </div>
+</footer>
+</body>
+</html>
