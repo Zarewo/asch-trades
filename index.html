@@ -10,6 +10,71 @@
 
 <body>
 
+<input id="email" type="email" placeholder="Email">
+<input id="password" type="password" placeholder="Пароль">
+
+<button onclick="register()">Регистрация</button>
+<button onclick="login()">Войти</button>
+<button onclick="logout()">Выйти</button>
+
+<script type="module">
+  // Импортируйте необходимые функции из соответствующих SDK.
+import { initializeApp } from "firebase/app" ;   
+import { getAnalytics } from "firebase/analytics" ;   
+// TODO: Добавьте SDK для продуктов Firebase, которые вы хотите использовать
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Конфигурация Firebase вашего веб-приложения
+// Для Firebase JS SDK версии 7.20.0 и выше measurementId является необязательным параметром.
+const firebaseConfig = { 
+  apiKey : "AIzaSyAf3N5XpXMtgB4PhPERQxfNf_UrtNzQ5aQ" , 
+  authDomain : "asch-trades.firebaseapp.com" , 
+  projectId : "asch-trades" , 
+  storageBucket : "asch-trades.firebasestorage.app" , 
+  messagingSenderId : "1021341834852" , 
+  appId : "1:1021341834852:web:58ff1ba5e12fc432c44971" , 
+  measurementId : "G-40C6GCWS75" 
+};
+
+// Инициализация Firebase
+const app = initializeApp ( firebaseConfig );
+const analytics = getAnalytics ( app );
+
+  // регистрация
+  window.register = () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => alert("Аккаунт создан"))
+      .catch(e => alert(e.message));
+  };
+
+  // логин
+  window.login = () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => alert("Вход выполнен"))
+      .catch(e => alert(e.message));
+  };
+
+  // выход
+  window.logout = () => {
+    signOut(auth);
+  };
+
+  // проверка авторизации
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      console.log("Залогинен:", user.email);
+    } else {
+      console.log("Не залогинен");
+    }
+  });
+</script>
+
 <!-- HEADER -->
 <header class="liquid-glass">
   <div class="nav-item active">Home</div>
