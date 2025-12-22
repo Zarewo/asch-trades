@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Tools</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="liquid-glass">
+  <div class="nav-item active">Home</div>
+  <div class="nav-item" onclick="location.href='timezone.html'">Time Zones</div>
+  <div class="nav-item" onclick="location.href='calculator.html'">Calculator</div>
+</header>
+
+<!-- MAIN -->
+<section class="hero">
+  <div class="hero-box liquid-glass">
+
+    <h1>TRADING TOOLS</h1>
+    <p>Minimal & precise tools for traders</p>
+
+    <!-- ROW 1 -->
+    <div class="home-grid">
+
+      <div class="tool-card liquid-glass"
+           onclick="location.href='timezone.html'">
+        <div class="tool-icon">🕒</div>
+        <h2>Time Zone</h2>
+        <p>Trading session converter</p>
+      </div>
+
+      <div class="tool-card liquid-glass"
+           onclick="location.href='calculator.html'">
+        <div class="tool-icon">📐</div>
+        <h2>Size Calculator</h2>
+        <p>Risk & lot sizing</p>
+      </div>
+
+      <div class="tool-card liquid-glass"
+           onclick="window.open('https://www.forexfactory.com/calendar','_blank')">
+        <div class="tool-icon">📰</div>
+        <h2>ForexFactory</h2>
+        <p>Economic calendar</p>
+      </div>
+
+    </div>
+
+    <!-- ROW 2 -->
+    <div class="coming-grid">
+
+      <div class="coming-card liquid-glass">
+        <h2>Coming Soon</h2>
+        <p>News dashboard</p>
+      </div>
+
+      <div class="coming-card liquid-glass">
+        <h2>Coming Soon</h2>
+        <p>Session overlap</p>
+      </div>
+
+      <div class="coming-card liquid-glass">
+        <h2>Coming Soon</h2>
+        <p>Risk management</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer liquid-glass">
+  <div class="footer-links">
+    <a href="https://t.me/ascheleo" target="_blank">Telegram — @ascheleo</a>
+    <a href="https://discord.gg/zvYnenM6kh" target="_blank">Discord — asch-trades</a>
+    <a href="https://www.youtube.com/@ascheleo" target="_blank">YouTube — asch-trades</a>
+    <a href="https://www.tiktok.com/@ascheleo" target="_blank">TikTok — @ascheleo</a>
+    <a href="https://github.com/Zarewo" target="_blank">GitHub — Zarewo</a>
+  </div>
+
+  <div class="footer-brand">
+    Kystameelion • Ascheleo • Aweleo
+	<footer>
+  Trading Tools © 2025
+</footer>
+  </div>
+</footer>
+
+<!-- SVG GLASS DISTORTION -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <filter id="glass-distortion">
+      <feTurbulence type="fractalNoise"
+        baseFrequency="0.006 0.006"
+        numOctaves="2"
+        seed="12"
+        result="noise"/>
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="noise"
+        scale="35"
+        xChannelSelector="R"
+        yChannelSelector="G"/>
+    </filter>
+
+    <filter id="glass-distortion-2">
+      <feTurbulence type="fractalNoise"
+        baseFrequency="0.009 0.009"
+        numOctaves="2"
+        seed="42"
+        result="noise"/>
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="noise"
+        scale="45"
+        xChannelSelector="R"
+        yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+
+</body>
+</html>

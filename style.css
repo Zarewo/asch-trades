@@ -1,0 +1,593 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+
+  background:
+    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.7)),
+    url("https://images.wallpaperscraft.ru/image/single/more_ozero_ostrov_118555_3840x2400.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* scroll fix */
+section {
+  scroll-margin-top: 140px;
+}
+
+/* ================= TRUE LIQUID GLASS ================= */
+/* стекло = форма + искажение, БЕЗ blur */
+.liquid-glass {
+  position: relative;
+  isolation: isolate;
+  border-radius: 56px;
+  background: none;
+  overflow: hidden;
+
+  box-shadow:
+    0 6px 24px rgba(0,0,0,.35),
+    0 40px 120px rgba(0,0,0,.45);
+}
+
+/* внутренняя световая форма */
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 56px;
+
+  background: rgba(255,255,255,0);
+  box-shadow:
+    inset 0 0 18px -6px rgba(0,0,0,.9),
+    inset 0 0 32px rgba(255,255,255,.12);
+
+  z-index: 0;
+}
+
+/* ИСКАЖЕНИЕ (НЕ МУТНОСТЬ) */
+.liquid-glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 56px;
+
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+
+  filter: url(#glass-distortion);
+  -webkit-filter: url(#glass-distortion);
+
+  z-index: -1;
+}
+
+/* контент поверх стекла */
+.liquid-glass > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= HEADER ================= */
+header {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  padding: 14px 18px;
+  z-index: 1000;
+}
+
+.nav-item {
+  padding: 10px 22px;
+  border-radius: 28px;
+  cursor: pointer;
+  font-size: 14px;
+  opacity: .85;
+  border: 1px solid rgba(255,255,255,.25);
+  transition: .25s;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,.15);
+  opacity: 1;
+}
+
+.nav-item.active {
+  background: rgba(255,255,255,.28);
+  box-shadow: inset 0 0 14px rgba(255,255,255,.35);
+  opacity: 1;
+}
+
+/* ================= HERO ================= */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 160px 20px;
+}
+
+.hero-box {
+  max-width: 900px;
+  padding: 70px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 54px;
+  letter-spacing: 5px;
+}
+
+.hero p {
+  margin-top: 16px;
+  font-size: 18px;
+  opacity: .9;
+}
+
+/* ================= BUTTON ================= */
+.btn {
+  margin-top: 30px;
+  padding: 16px 36px;
+  border-radius: 40px;
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.25);
+  color: white;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.btn:hover {
+  background: rgba(255,255,255,.35);
+  box-shadow: 0 0 30px rgba(255,255,255,.15);
+}
+
+/* ================= SECTIONS ================= */
+section {
+  padding: 120px 6%;
+}
+
+/* ================= CONTENT BLOCK ================= */
+.about {
+  max-width: 900px;
+  margin: auto;
+  padding: 60px;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.about p {
+  opacity: .85;
+  line-height: 1.6;
+}
+
+/* ================= INPUTS ================= */
+input,
+select {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  color: white;
+  outline: none;
+}
+
+label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  opacity: .85;
+  text-align: left;
+}
+
+/* ================= FOOTER ================= */
+footer {
+  padding: 60px;
+  text-align: center;
+  opacity: .7;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 900px) {
+  header {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .hero-box {
+    padding: 50px;
+  }
+
+  section {
+    padding: 80px 20px;
+  }
+}
+/* SELECT */
+select{
+  background: rgba(255,255,255,.12);
+  color: #f0f0f5;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 16px;
+  padding: 12px 16px;
+  outline: none;
+}
+
+/* OPTIONS (выпадающий список) */
+select option{
+  background: #47476b;   /* тёмный фон */
+  color: #d1d1e0;           /* белый текст */
+}
+
+/* выбранный пункт */
+select option:checked{
+  background: 47476b;
+  color: #f0f0f5;
+}
+/* ================= TIMEZONE ================= */
+
+.timezone-section{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:160px 20px 80px;
+}
+
+.timezone-wrapper{
+  display:flex;
+  gap:40px;
+  max-width:900px;
+  width:100%;
+}
+
+.timezone-box{
+  flex:1;
+  padding:40px;
+  text-align:center;
+}
+
+.timezone-box label{
+  display:block;
+  font-size:14px;
+  opacity:.75;
+  margin-bottom:10px;
+}
+
+.timezone-box select{
+  width:100%;
+  padding:14px 18px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.3);
+  background:rgba(255,255,255,.12);
+  color:white;
+  font-size:15px;
+  outline:none;
+}
+
+.timezone-box option{
+  color:#000;
+}
+
+.timezone-time{
+  margin-top:18px;
+  font-size:28px;
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+  .timezone-wrapper{
+    flex-direction:column;
+  }
+}
+/* ================= TRADING SESSIONS ================= */
+
+.sessions-bar{
+  display:flex;
+  gap:14px;
+  padding:16px;
+  margin-bottom:40px;
+  justify-content:center;
+}
+
+.session-btn{
+  padding:12px 28px;
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.22);
+  color:white;
+  cursor:pointer;
+  font-size:14px;
+  transition:.25s;
+}
+
+.session-btn:hover{
+  background:rgba(255,255,255,.35);
+  box-shadow:0 0 18px rgba(255,255,255,.2);
+}
+/* ================= HOME ================= */
+
+.home-actions{
+  display:flex;
+  gap:40px;
+  margin-top:50px;
+}
+
+.tool-card{
+  flex:1;
+  padding:40px;
+  text-align:center;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.tool-card h2{
+  font-size:22px;
+  margin-bottom:12px;
+}
+
+.tool-card p{
+  opacity:.8;
+  font-size:15px;
+}
+
+.tool-card:hover{
+  transform:translateY(-6px);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.45),
+    0 0 30px rgba(255,255,255,.15);
+}
+
+/* MOBILE */
+@media(max-width:800px){
+  .home-actions{
+    flex-direction:column;
+  }
+}
+/* ================= HOME GRID ================= */
+
+.home-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px;
+  margin-top:50px;
+}
+
+.tool-card{
+  padding:40px;
+  text-align:center;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.tool-icon{
+  font-size:36px;
+  margin-bottom:14px;
+}
+
+.tool-card h2{
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.tool-card p{
+  opacity:.8;
+  font-size:15px;
+}
+
+.tool-card:hover{
+  transform:translateY(-6px);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.45),
+    0 0 30px rgba(255,255,255,.15);
+}
+
+/* ================= COMING SOON ================= */
+
+.coming-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px;
+  margin-top:40px;
+}
+
+.coming-card{
+  padding:32px;
+  text-align:center;
+  opacity:.55;
+}
+
+.coming-card h2{
+  font-size:18px;
+  margin-bottom:6px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .home-grid,
+  .coming-grid{
+    grid-template-columns:1fr;
+  }
+}
+/* ================= LIQUID GLASS ANIMATION ================= */
+
+@keyframes glassFlow {
+  0%   { filter: url(#glass-distortion); }
+  50%  { filter: url(#glass-distortion-2); }
+  100% { filter: url(#glass-distortion); }
+}
+
+.liquid-glass::after{
+  animation: glassFlow 14s ease-in-out infinite;
+}
+.tool-card{
+  position:relative;
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+}
+
+.tool-card:hover{
+  transform:translateY(-6px) scale(1.015);
+}
+
+.tool-card:active{
+  transform:scale(.98);
+}
+
+.tool-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:56px;
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(255,255,255,.18),
+      transparent 60%
+    );
+  opacity:0;
+  transition:.4s;
+}
+
+.tool-card:hover::before{
+  opacity:1;
+}
+/* ================= MOBILE – STRICT VERTICAL STACK ================= */
+@media (max-width: 768px){
+
+  /* основной контейнер */
+  .timezone-section{
+    padding-top:160px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:28px;
+  }
+
+  /* СЕССИИ — ПЕРВЫЙ БЛОК */
+  .sessions-bar{
+    width:100%;
+    max-width:320px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    align-items:center;
+    order:1;
+  }
+
+  .session-btn{
+    width:100%;
+    padding:14px 0;
+    font-size:15px;
+    border-radius:28px;
+  }
+
+  /* TIME ZONES WRAPPER */
+  .timezone-wrapper{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+    order:2;
+  }
+
+  /* ЗОНА A / B */
+  .timezone-box{
+    width:100%;
+    max-width:320px;
+    margin:0 auto;
+    padding:26px 22px;
+  }
+
+  .timezone-time{
+    font-size:30px;
+    margin-top:16px;
+    text-align:center;
+  }
+}
+/* ================= GLOBAL CONTACT FOOTER ================= */
+.site-footer{
+  margin:120px auto 40px;
+  padding:16px 24px;
+  border-radius:36px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  max-width:900px;
+  text-align:center;
+}
+
+/* LINKS */
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:14px 18px;
+}
+
+.footer-links a{
+  font-size:13px;
+  color:#fff;
+  text-decoration:none;
+  opacity:.85;
+  transition:.25s;
+  white-space:nowrap;
+}
+
+.footer-links a:hover{
+  opacity:1;
+  text-shadow:0 0 6px rgba(255,255,255,.35);
+}
+
+/* BRAND LINE */
+.footer-brand{
+  font-size:11px;
+  opacity:.6;
+  letter-spacing:.6px;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+  .site-footer{
+    margin:80px 16px 30px;
+    padding:14px 18px;
+  }
+
+  .footer-links{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .footer-links a{
+    font-size:12px;
+  }
+
+  .footer-brand{
+    font-size:10px;
+  }
+}

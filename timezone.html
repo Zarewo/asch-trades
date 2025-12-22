@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time Zone Converter</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="liquid-glass">
+  <div class="nav-item" onclick="location.href='index.html'">Home</div>
+  <div class="nav-item active">Time Zone Converter</div>
+</header>
+
+<!-- MAIN -->
+<section class="timezone-section">
+
+  <!-- TRADING SESSIONS -->
+  <div class="sessions-bar liquid-glass">
+    <button class="session-btn" onclick="setSession('asia')">Asia</button>
+    <button class="session-btn" onclick="setSession('london')">London</button>
+    <button class="session-btn" onclick="setSession('newyork')">New York</button>
+  </div>
+
+  <!-- TIME ZONES -->
+  <div class="timezone-wrapper">
+
+    <!-- ZONE A -->
+    <div class="timezone-box liquid-glass">
+      <label>Time Zone A</label>
+      <select id="tzA"></select>
+      <div class="timezone-time" id="timeA">--:--:--</div>
+    </div>
+
+    <!-- ZONE B -->
+    <div class="timezone-box liquid-glass">
+      <label>Time Zone B</label>
+      <select id="tzB"></select>
+      <div class="timezone-time" id="timeB">--:--:--</div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SESSION LOGIC (НЕ ЛОМАЕТ timezone.js) -->
+<script>
+function setSession(session){
+  const map = {
+    asia: 8,
+    london: 0,
+    newyork: -5
+  };
+
+  document.getElementById('tzA').value = map[session];
+}
+</script>
+
+<!-- ОСНОВНАЯ ЛОГИКА -->
+<script src="js/timezone.js"></script>
+<!-- SVG GLASS DISTORTION -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <filter id="glass-distortion">
+      <feTurbulence type="fractalNoise"
+        baseFrequency="0.006 0.006"
+        numOctaves="2"
+        seed="12"
+        result="noise"/>
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="noise"
+        scale="35"
+        xChannelSelector="R"
+        yChannelSelector="G"/>
+    </filter>
+
+    <filter id="glass-distortion-2">
+      <feTurbulence type="fractalNoise"
+        baseFrequency="0.009 0.009"
+        numOctaves="2"
+        seed="42"
+        result="noise"/>
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="noise"
+        scale="45"
+        xChannelSelector="R"
+        yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+<footer class="site-footer liquid-glass">
+  <div class="footer-links">
+    <a href="https://t.me/ascheleo" target="_blank">Telegram — @ascheleo</a>
+    <a href="https://discord.gg/zvYnenM6kh" target="_blank">Discord — asch-trades</a>
+    <a href="https://www.youtube.com/@ascheleo" target="_blank">YouTube — asch-trades</a>
+    <a href="https://www.tiktok.com/@ascheleo" target="_blank">TikTok — @ascheleo</a>
+    <a href="https://github.com/Zarewo" target="_blank">GitHub — Zarewo</a>
+  </div>
+
+  <div class="footer-brand">
+    Kystameelion • Ascheleo • Aweleo
+	<footer>
+  Trading Tools © 2025
+</footer>
+  </div>
+</footer>
+</body>
+</html>
