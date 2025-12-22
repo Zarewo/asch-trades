@@ -129,5 +129,26 @@
 </footer>
   </div>
 </footer>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAf3N5XpXMtgB4PhPERQxfNf_UrtNzQ5aQ",
+    authDomain: "asch-trades.firebaseapp.com",
+    projectId: "asch-trades",
+    appId: "1:1021341834852:web:58ff1ba5e12fc432c44971"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  onAuthStateChanged(auth, user => {
+    if (!user) {
+      // ❌ НЕ ЗАЛОГИНЕН → ВЫКИДЫВАЕМ
+      window.location.href = "index.html";
+    }
+  });
+</script>
 </body>
 </html>
