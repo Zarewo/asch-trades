@@ -14,7 +14,19 @@
   <span id="userEmail"></span>
   <button onclick="logout()">Выйти</button>
 </div>
-
+<div id="userPanel" style="
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:9999;
+  display:none;
+  background:rgba(0,0,0,.5);
+  padding:10px 16px;
+  border-radius:12px;
+">
+  <span id="userEmail"></span>
+  <button onclick="logout()">Выйти</button>
+</div>
 
 <!-- HEADER -->
 <header class="liquid-glass">
@@ -196,7 +208,7 @@
       console.log("Not logged in");
     }
   });
-});
+
 function shakeAuth() {
   const box = document.querySelector(".auth-box");
   box.classList.remove("shake");
