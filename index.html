@@ -10,12 +10,22 @@
 
 <body>
 
-<input id="email" type="email" placeholder="Email">
-<input id="password" type="password" placeholder="Пароль">
+<div id="authModal" class="auth-modal">
+  <div class="auth-box">
+    <h2 id="authTitle">Вход</h2>
 
-<button onclick="register()">Регистрация</button>
-<button onclick="login()">Войти</button>
-<button onclick="logout()">Выйти</button>
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Пароль">
+
+    <button onclick="login()">Войти</button>
+    <button class="secondary" onclick="register()">Регистрация</button>
+
+    <div class="auth-switch">
+      Нет аккаунта?
+      <span onclick="switchMode()">Регистрация</span>
+    </div>
+  </div>
+</div>
 
 <script type="module">
   // Firebase CDN
@@ -183,6 +193,15 @@
     </filter>
   </defs>
 </svg>
+ <script type="module">
+    let isLogin = true;
 
+window.switchMode = () => {
+  isLogin = !isLogin;
+  document.getElementById("authTitle").innerText =
+    isLogin ? "Вход" : "Регистрация";
+};
+
+  </script>
 </body>
 </html>
