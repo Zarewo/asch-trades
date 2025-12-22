@@ -731,3 +731,35 @@ select option:checked{
 .auth-modal{
   transition: opacity .3s ease;
 }
+/* ===== USER PANEL BUTTON ===== */
+#userPanel button {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+  backdrop-filter: blur(10px);
+  transition: 
+    background 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+}
+
+#userPanel button:hover {
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 0 16px rgba(255,255,255,.25);
+  transform: translateY(-1px);
+}
+
+#userPanel button:active {
+  transform: scale(0.95);
+}
+
+/* ===== USER EMAIL ===== */
+#userEmail {
+  font-size: 13px;
+  opacity: 0.9;
+  white-space: nowrap;
+}

@@ -188,7 +188,7 @@ window.login = async () => {
     await signInWithEmailAndPassword(auth, email.value, password.value);
   } catch (e) {
     shake();
-    alert(e.message);
+    
   }
 };
 
@@ -198,7 +198,7 @@ window.register = async () => {
     await createUserWithEmailAndPassword(auth, email.value, password.value);
   } catch (e) {
     shake();
-    alert(e.message);
+    
   }
 };
 
