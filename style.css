@@ -763,25 +763,26 @@ select option:checked{
   opacity: 0.9;
   white-space: nowrap;
 }
-//* ===== USER PANEL — SAFE MOBILE (НЕ ПЕРЕКРЫВАЕТ МЕНЮ) ===== */
-@media (max-width: 480px) {
+/* ===== USER PANEL — MOBILE SAFE WITH CENTERED HEADER ===== */
+@media (max-width: 900px) {
 
   #userPanel {
     position: fixed;
-    top: 72px;              /* ⬅ ниже header */
-    right: 12px;
+    top: calc(100px + env(safe-area-inset-top)); /* ⬅ ниже центрированного header */
+    right: 16px;
 
-    padding: 8px 10px;
+    padding: 8px 12px;
     gap: 8px;
     border-radius: 14px;
 
     display: flex;
     align-items: center;
-    z-index: 50;            /* ⬅ ниже хедера */
+
+    z-index: 10; /* ⬅ ниже header */
   }
 
   #userEmail {
-    max-width: 120px;
+    max-width: 140px;
     font-size: 12px;
     overflow: hidden;
     text-overflow: ellipsis;
