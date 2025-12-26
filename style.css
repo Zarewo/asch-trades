@@ -795,3 +795,66 @@ select option:checked{
     border-radius: 10px;
   }
 }
+/* ================= BACKTEST ================= */
+.backtest-section{
+  padding-top:160px;
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.backtest-controls{
+  display:flex;
+  gap:12px;
+  padding:14px 18px;
+  margin-bottom:16px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.backtest-controls select,
+.backtest-controls button{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
+  color:#fff;
+  padding:8px 14px;
+  border-radius:18px;
+  cursor:pointer;
+}
+
+.backtest-controls button:hover{
+  background:rgba(255,255,255,.25);
+}
+
+/* chart + mask */
+.tv-chart-wrapper{
+  position:relative;
+  border-radius:28px;
+  overflow:hidden;
+}
+
+.tv-chart{
+  height:600px;
+}
+
+#future-mask{
+  position:absolute;
+  top:0;
+  right:0;
+  width:40%;
+  height:100%;
+  background:linear-gradient(
+    to left,
+    rgba(5,10,20,.95),
+    rgba(5,10,20,.75),
+    rgba(5,10,20,0)
+  );
+  pointer-events:none;
+  transition:width .4s ease;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .tv-chart{
+    height:420px;
+  }
+}

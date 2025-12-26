@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Backtest</title>
+  <link rel="stylesheet" href="css/backtest.css">
+</head>
+<body>
+
+<div class="toolbar">
+  <select id="symbol">
+    <option>XAUUSD</option>
+  </select>
+
+  <select id="tf">
+    <option value="5">5m</option>
+    <option value="15">15m</option>
+  </select>
+
+  <button id="play">▶ Play</button>
+  <button id="pause">⏸ Pause</button>
+  <button id="step">⏭ Step</button>
+</div>
+
+<canvas id="chart"></canvas>
+
+<script src="js/dataLoader.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/ui.js"></script>
+
+</body>
+</html>
