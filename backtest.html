@@ -1,33 +1,32 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Backtest</title>
-  <link rel="stylesheet" href="css/backtest.css">
+<meta charset="UTF-8">
+<title>Backtest</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  margin: 0;
+  background: #0b0f1a;
+  color: #fff;
+  font-family: sans-serif;
+}
+#chart {
+  width: 100vw;
+  height: 90vh;
+}
+.controls {
+  padding: 10px;
+}
+</style>
 </head>
 <body>
 
-<div class="toolbar">
-  <select id="symbol">
-    <option>XAUUSD</option>
-  </select>
-
-  <select id="tf">
-    <option value="5">5m</option>
-    <option value="15">15m</option>
-  </select>
-
-  <button id="play">▶ Play</button>
-  <button id="pause">⏸ Pause</button>
-  <button id="step">⏭ Step</button>
+<div class="controls">
+  <button id="play">Play</button>
+  <button id="step">Step</button>
 </div>
 
 <canvas id="chart"></canvas>
 
-<script src="js/dataLoader.js"></script>
-<script src="js/chart.js"></script>
-<script src="js/engine.js"></script>
-<script src="js/ui.js"></script>
-
-</body>
-</html>
+<script src="js/dataLoader.j
