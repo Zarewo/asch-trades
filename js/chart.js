@@ -3,60 +3,70 @@ const ctx = canvas.getContext('2d');
 
 function resize() {
   canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight - 40;
+  canvas.height = window.innerHeight - 50;
 }
-resize();
 window.addEventListener('resize', resize);
+resize();
 
-let data = [];
-let index = 50;          // текущая свеча
-const windowSize = 60;   // сколько свечей видно
+const VIEW_BARS = 80;
+const PLAYHEAD = 0.65;
 
-function draw() {
+function drawChart(data, index) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  if (!data.length) return;
 
-  const visible = data.slice(index - windowSize, index);
+  const start = Math.max(0, index - Math.floor(VIEW_BARS * PLAYHEAD));
+  const end = start + VIEW_BARS;
+  const visible = data.slice(start, end);
 
-  let min = Math.min(...visible.map(c => c.low));
-  let max = Math.max(...visible.map(c => c.high));
-  const pad = (max - min) * 0.1;
-  min -= pad;
-  max += pad;
+  if (!visible.length) return;
 
-  const candleWidth = canvas.width / windowSize;
+  const prices = visible.flatMap(c => [c.high, c.low]);
+  const max = Math.max(...prices);
+  const min = Math.min(...prices);
+
+  const scaleY = p =>
+    canvas.height - ((p - min) / (max - min)) * canvas.height;
+
+  const candleW = canvas.width / VIEW_BARS;
 
   visible.forEach((c, i) => {
-    const x = i * candleWidth;
-    const yOpen  = map(c.open,  min, max);
-    const yClose = map(c.close, min, max);
-    const yHigh  = map(c.high,  min, max);
-    const yLow   = map(c.low,   min, max);
+    const x = i * candleW + candleW / 2;
 
-    ctx.strokeStyle = c.close >= c.open ? '#00ff99' : '#ff4d4d';
-    ctx.fillStyle   = ctx.strokeStyle;
+    const openY = scaleY(c.open);
+    const closeY = scaleY(c.close);
+    const highY = scaleY(c.high);
+    const lowY = scaleY(c.low);
 
-    // тень
+    const up = c.close >= c.open;
+    ctx.strokeStyle = up ? '#00ff99' : '#ff4d4d';
+    ctx.fillStyle = ctx.strokeStyle;
+
+    // wick
     ctx.beginPath();
-    ctx.moveTo(x + candleWidth/2, yHigh);
-    ctx.lineTo(x + candleWidth/2, yLow);
+    ctx.moveTo(x, highY);
+    ctx.lineTo(x, lowY);
     ctx.stroke();
 
-    // тело
+    // body
     ctx.fillRect(
-      x + candleWidth*0.2,
-      Math.min(yOpen, yClose),
-      candleWidth*0.6,
-      Math.abs(yClose - yOpen) || 1
+      x - candleW * 0.3,
+      Math.min(openY, closeY),
+      candleW * 0.6,
+      Math.abs(openY - closeY) || 1
     );
   });
-}
 
-function map(price, min, max) {
-  return canvas.height - (price - min) / (max - min) * canvas.height;
-}
+  // 🔥 маска будущего
+  const maskX = canvas.width * PLAYHEAD;
+  ctx.fillStyle = 'rgba(0,0,0,0.6)';
+  ctx.fillRect(maskX, 0, canvas.width - maskX, canvas.height);
 
-loadData().then(d => {
-  data = d;
-  draw();
-});
+  // линия текущей свечи
+  ctx.strokeStyle = '#888';
+  ctx.setLineDash([5, 5]);
+  ctx.beginPath();
+  ctx.moveTo(maskX, 0);
+  ctx.lineTo(maskX, canvas.height);
+  ctx.stroke();
+  ctx.setLineDash([]);
+}

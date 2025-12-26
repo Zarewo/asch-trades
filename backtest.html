@@ -1,26 +1,52 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Backtest</title>
-<style>
-  body { margin:0; background:#0b1220; color:#fff; font-family:sans-serif; }
-  #toolbar { padding:6px; background:#111; }
-  canvas { display:block; }
-</style>
+  <meta charset="UTF-8" />
+  <title>Backtest</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0b1220;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    #toolbar {
+      padding: 10px;
+      background: #111827;
+      display: flex;
+      gap: 10px;
+    }
+
+    canvas {
+      display: block;
+    }
+
+    button {
+      background: #1f2937;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #374151;
+    }
+  </style>
 </head>
 <body>
 
 <div id="toolbar">
-  <button id="play">Play</button>
-  <button id="step">Step</button>
+  <button id="play">▶ Play</button>
+  <button id="step">⏭ Step</button>
 </div>
 
 <canvas id="chart"></canvas>
 
 <script src="js/dataLoader.js"></script>
 <script src="js/chart.js"></script>
-<script src="js/player.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>
