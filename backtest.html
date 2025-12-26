@@ -1,32 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <title>Backtest</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body {
-  margin: 0;
-  background: #0b0f1a;
-  color: #fff;
-  font-family: sans-serif;
-}
-#chart {
-  width: 100vw;
-  height: 90vh;
-}
-.controls {
-  padding: 10px;
-}
+  body { margin:0; background:#0b1220; color:#fff; font-family:sans-serif; }
+  #toolbar { padding:6px; background:#111; }
+  canvas { display:block; }
 </style>
 </head>
 <body>
 
-<div class="controls">
+<div id="toolbar">
   <button id="play">Play</button>
   <button id="step">Step</button>
 </div>
 
 <canvas id="chart"></canvas>
 
-<script src="js/dataLoader.j
+<script src="js/dataLoader.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/player.js"></script>
+
+</body>
+</html>
